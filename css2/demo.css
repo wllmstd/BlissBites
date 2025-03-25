@@ -1,0 +1,295 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 15px;
+  background: floralwhite;
+}
+
+.intro {
+  background: #00CEB3;
+  padding: 60px 30px;
+  color: floralwhite;
+  margin-bottom: 15px;
+  line-height: 1.5;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.intro h1 {
+  font-size: 28px;
+  padding-bottom: 15px;
+}
+
+.intro p {
+  font-size: 16px;
+}
+
+.action {
+  text-align: center;
+  display: block;
+  margin-top: 20px;
+}
+
+a.btn {
+  text-decoration: none;
+  color: #007e6e;
+  border: 2px solid #fff;
+  background-color: #fff; 
+  padding: 10px 15px;
+  display: inline-block;
+  margin-left: 5px;
+  border-radius: 5px;
+}
+
+a.btn:hover {
+  background: #007e6e;
+  color: #fff;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+}
+
+.btn:before {
+  font-family: FontAwesome;
+  font-weight: normal;
+  margin-right: 10px;
+}
+
+.github:before {
+  content: "\f09b";
+}
+
+.down:before {
+  content: "\f019";
+}
+
+.back:before {
+  content: "\f112";
+}
+
+.order-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.order-form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 60%;
+}
+
+.order-summary {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 35%;
+}
+
+/* Form styles */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input,
+select {
+  padding: 10px;
+  border: 1px solid #00CEB3;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+button {
+  background-color: #00CEB3;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #007E6E; /* Darker color on hover */
+}
+
+/* Media query for smaller screens */
+@media only screen and (max-width: 600px) {
+  .order-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .order-form,
+  .order-summary {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+
+main {
+  background: floralwhite;
+  padding: 20px;
+  border: 0.1rem solid #bc856c;
+  margin: 0;
+  padding: 0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+@media only screen and (min-width: 1280px) {
+  main {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 24px;
+  }
+}
+
+.set-overlayer,
+.set-glass,
+.set-sticky {
+  cursor: pointer;
+  height: 45px;
+  line-height: 45px;
+  padding: 0 15px;
+  color: #333;
+  font-size: 16px;
+}
+
+.set-overlayer:after,
+.set-glass:after,
+.to-active:after,
+.set-sticky:after {
+  font-family: FontAwesome;
+  font-size: 18pt;
+  position: relative;
+  float: right;
+}
+
+.set-overlayer:after,
+.set-glass:after,
+.set-sticky:after {
+  content: "\f204";
+  transition: 0.6s;
+}
+
+.to-active:after {
+  content: "\f205";
+  color: #008080;
+  transition: 0.6s;
+}
+
+.set-overlayer,
+.set-glass,
+.set-sticky,
+.source,
+.theme-tray {
+  margin: 10px;
+  background: #f2f2f2;
+  border-radius: 5px;
+  border: 2px solid #f1f1f1;
+  box-sizing: border-box;
+}
+
+/* Syntax Highlighter*/
+
+pre.prettyprint {
+  padding: 15px !important;
+  margin: 10px;
+  border: 0 !important;
+  background: #f2f2f2;
+  overflow: auto;
+}
+
+.source {
+  white-space: pre;
+  overflow: auto;
+  max-height: 400px;
+}
+
+code {
+  border: 1px solid #ddd;
+  padding: 2px;
+  border-radius: 2px;
+}
+
+
+
+/* DIRI SI STAD NAG UMPISA EDIT */
+body .cart-page .order-summary {
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 150%; /* Adjust the width percentage as needed */
+  margin: 20px 0 20px 10%; /* Adjust the margins as needed (top right bottom left) */
+  box-sizing: border-box;
+  max-width: none; /* Remove the max-width property */
+}
+
+
+.cart-page .order-summary h3 {
+  margin-top: 0; /* Adjusted to display the "Order Summary" text properly */
+}
+
+.cart-page .product-rows {
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.cart-page .product-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.cart-page .cart-image {
+  width: 50px; /* Adjust the width as needed */
+  height: 50px; /* Adjust the height as needed */
+  margin-right: 10px;
+}
+
+.cart-page .cart-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-page .cart-price {
+  font-size: 16px; /* Adjust the font size as needed */
+}
+
+.cart-page .total-price {
+  font-size: 18px;
+  font-weight: bold;
+}

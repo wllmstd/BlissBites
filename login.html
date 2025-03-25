@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css3/styles.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <title>Registration Form | Bliss Bites</title>
+
+
+    <!--Libraries of Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.js"></script>
+
+    <!--Configuration Needed to connect to the database-->
+    <script src="js/firebaseCon.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="signin-signup">
+
+            <!-- sign in -->
+            <form action="" class="sign-in-form" id="signInForm">
+                <h2 class="title">Sign in</h2>
+                <div class="input-field">
+                    <i class="fas fa-envelope"></i>
+                    <input type="text" id="signinEmail" placeholder="Email">
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="signinPassword" placeholder="Password">
+                </div>
+                <input type="submit" value="Login" class="btn" id="loginBtn">
+
+                <!--Social Media Login-->
+                <p class="social-text">Or Sign in with social platform</p>
+                <div class="social-media">
+                    <a href="https://www.facebook.com/" class="social-icon">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://www.twitter.com/" class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://accounts.google.com" class="social-icon">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <a href="https://www.linkedin.com" class="social-icon">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+
+                    <!-- Display error message -->
+                    <div id="loginError" class="error-message"></div>
+                </div>
+
+                <!-- sign up -->
+
+                <p class="account-text">Don't have an account? <a href="#" id="sign-up-btn2">Sign up</a></p>
+            </form>
+            <form action="" class="sign-up-form" id="signUpForm">
+                <h2 class="title">Sign up</h2>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="signupUsername" placeholder="Username">
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-envelope"></i>
+                    <input type="text" id="signupEmail" placeholder="Email">
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="signupPassword" placeholder="Password">
+                </div>
+                <input type="submit" value="Sign up" class="btn" id="signupBtn">
+
+                <p class="social-text">Or Sign in with social platform</p>
+                <!--Social Media Login-->
+                <div class="social-media">
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+                <p class="account-text">Already have an account? <a href="#" id="sign-in-btn2">Sign in</a></p>
+            </form>
+        </div>
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>Member of Brand?</h3>
+                    <p>Explore exclusive benefits and stay connected with us. Sign in to enjoy Bliss Bites products!</p>
+                    <button class="btn" id="sign-in-btn">Sign in</button>
+
+                </div>
+            </div>
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3>New to Our Bakery?</h3>
+                    <p> Immerse in sweet aroma, freshly baked cakes melt in your mouth. Join for a delightful experience beyond a slice. </p>
+                    <button class="btn" id="sign-up-btn">Sign up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Save/fetch information to Database-->
+    <script src="js/script.js"></script>
+
+    <!-- functionalities js -->
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Select the form and submit button
+            const signInForm = document.getElementById('signInForm');
+            const loginBtn = document.getElementById('loginBtn');
+
+            // Add event listener to form submission
+            signInForm.addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent the default form submission
+
+
+                // Redirect to orders.html after successful login
+                window.location.href = 'orders.html';
+            });
+        });
+        const sign_in_btn = document.querySelector("#sign-in-btn");
+        const sign_up_btn = document.querySelector("#sign-up-btn");
+        const container = document.querySelector(".container");
+        const sign_in_btn2 = document.querySelector("#sign-in-btn2");
+        const sign_up_btn2 = document.querySelector("#sign-up-btn2");
+        sign_up_btn.addEventListener("click", () => {
+            container.classList.add("sign-up-mode");
+        });
+        sign_in_btn.addEventListener("click", () => {
+            container.classList.remove("sign-up-mode");
+        });
+        sign_up_btn2.addEventListener("click", () => {
+            container.classList.add("sign-up-mode2");
+        });
+        sign_in_btn2.addEventListener("click", () => {
+            container.classList.remove("sign-up-mode2");
+        });
+    </script>
+</body>
+
+</html>

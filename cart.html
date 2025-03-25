@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="CodeHim">
+  <title>Order Here</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="css2/style.css">
+  <link rel="stylesheet" href="css2/demo.css">
+
+  <!-- Libraries of Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.slim.js"></script>
+
+  <!-- Configuration Needed to connect to the database -->
+  <script src="js/firebaseCon.js"></script>
+
+  <!-- Functions to save information to the database -->
+  <script src="js/script.js"></script>
+  <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+
+<body>
+  <header class="intro">
+    <h1>Place Your Order Now</h1>
+    <p>Customize your order preferences by filling in the details below. We're here to make your ordering experience
+      better.</p>
+    <div class="action">
+      <a href="main.html" title="Back to download and tutorial page" class="btn back">Back to Home</a>
+    </div>
+  </header>
+
+  <section class="order-container">
+    <div class="order-form">
+      <form id="orderForm">
+        <div class="form-group">
+          <label for="paymentMethod">Payment Method:</label>
+          <select id="paymentMethod" name="paymentMethod">
+            <option value="cashOnDelivery">Cash on Delivery</option>
+            <option value="bankTransfer">Bank Transfer</option>
+            <option value="gcash">Gcash</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="orderType">Order Type:</label>
+          <select id="orderType" name="orderType">
+            <option value="pickUp">Pick Up</option>
+            <option value="delivery">Delivery</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="customerDetailsN">Name:</label>
+          <input type="text" id="customerDetailsN" name="customerDetailsN" placeholder="Name">
+        </div>
+
+        <div class="form-group">
+          <label for="customerDetailsP">Phone Number:</label>
+          <input type="text" id="customerDetailsP" name="customerDetailsP" placeholder="Phone Number">
+        </div>
+
+        <div class="form-group">
+          <label for="customerDetailsS">Special Instructions:</label>
+          <input type="text" id="customerDetailsS" name="customerDetailsS" placeholder="Special Instructions">
+        </div>
+
+        <div class="form-group">
+          <label for="deliveryAddressStreet">Street Address:</label>
+          <input type="text" id="deliveryAddressStreet" name="deliveryAddressStreet" placeholder="Street Address">
+        </div>
+
+
+        <div class="form-group">
+          <label for="deliveryAddressZip">Zip Code:</label>
+          <input type="text" id="deliveryAddressZip" name="deliveryAddressZip" placeholder="Zip Code">
+        </div>
+
+        <button type="button" id="orderNowBtn" onclick="saveData()">Order Now</button>
+      </form>
+    </div>
+    <div class="cart-page">
+
+      <div class="order-summary">
+        <h3> Order Summary</h3>
+
+        <div class="product-rows">
+          <!-- Product rows will be dynamically added here -->
+        </div>
+        <div class="total-price">Total: ₱0</div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Retrieve cart items from local storage
+      const orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || { selectedProducts: [], totalPrice: 0 };
+
+      // Display cart items in the order summary
+      const productRowsContainer = document.querySelector('.product-rows');
+      const totalPriceElement = document.querySelector('.total-price');
+
+      // Function to create HTML elements for each cart item
+      function displayCartItems() {
+        productRowsContainer.innerHTML = ""; // Clear existing items
+
+        let total = 0; // Initialize total variable
+
+        orderDetails.selectedProducts.forEach((product) => {
+          const productRow = document.createElement('div');
+          productRow.classList.add('product-row');
+
+          const cartRowItems = `
+      <div class="product-row">
+        <img class="cart-image" src="${product.imageSrc}" alt="">
+        <div class="cart-details">
+          <span class="cart-price">${product.price}</span>
+
+        </div>
+      </div>
+    `;
+          productRow.innerHTML = cartRowItems;
+          productRowsContainer.appendChild(productRow);
+
+          // Add the product price to the total
+          total += parseFloat(product.price.replace('₱', '')); // Convert price to a float and add to total
+        });
+
+        // Display total price
+        totalPriceElement.innerText = `Total: ₱${total.toFixed(2)}`; // Display total with 2 decimal places
+      }
+
+      // Call the function to display cart items
+      displayCartItems();
+    });
+
+  </script>
+</body>
+
+</html>

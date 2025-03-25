@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bliss Bites</title>
+
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+<link rel="icon" type="image/png" href="images/logo.png">
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!--Libraries of Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.js"></script>
+
+    <!--Configuration Needed to connect to the database-->
+    <script src="js/firebaseCon.js"></script>
+
+    <!--Functions to save information to the database-->
+    <script src="js/script.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Check if the page was reloaded
+            if (performance.navigation.type === 1) {
+                // Redirect to splash.html
+                window.location.href = 'splash.html';
+            }
+        });
+    </script>
+</head>
+
+<body>
+
+    <!-- header section starts  -->
+
+    <header class="header">
+        <a href="#" class="logo">
+            <img src="images/logo.png" alt="">
+        </a>
+
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#about">about</a>
+            <a href="#menu">menu</a>
+            <a href="#contact">contact</a>
+            <a href="#blogs">blogs</a>
+        </nav>
+
+        <div class="icons">
+            <div class="fas fa-bars" id="menu-btn"></div>
+        </div>
+
+
+
+    </header>
+
+    <!-- header section ends -->
+
+
+    <!-- home section starts  -->
+
+
+    <section class="home" id="home">
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide"><img src="images/slide-1.png" alt="Slide 1"></div>
+            <div class="slide"><img src="images/slide-2.png" alt="Slide 2"></div>
+            <div class="slide"><img src="images/slide-3.png" alt="Slide 3"></div>
+            <div class="slide"><img src="images/slide-4.png" alt="Slide 4"></div>
+            <div class="slide"><img src="images/slide-5.png" alt="Slide 5"></div>
+           
+        </div>
+        <div class="controls">
+            <div class="left-arrow">&#9665;</div>
+            <div class="dots-container"></div>
+            <div class="right-arrow">&#9655;</div>
+        </div>
+    </div>
+
+    </section>
+
+    <!-- home section ends -->
+
+
+    <!-- about section starts  -->
+
+    <section class="about" id="about">
+
+        <h1 class="heading"> <span>about</span> us </h1>
+
+        <div class="row">
+
+            <div class="image">
+                <img src="images/about.png" alt="">
+            </div>
+
+            <div class="content">
+                <h3>Elevate Your Senses with Irresistible Sweetness.</h3>
+                <p>In the realm of delectable delights, our creations at Bliss Bites redefine the art of savoring sweetness. Every dessert whispers a tale of unparalleled bliss, inviting you to experience a world of flavor that transcends the ordinary.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- about section ends -->
+
+    <!-- menu section starts  -->
+
+    <section class="menu" id="menu">
+
+        <h1 class="heading"> our <span>menu</span> </h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <img src="images/Baba1.png" alt="">
+                <h3>Baba Cake</h3>
+                <div class="price">₱600 <span>₱695</span></div>
+                <a href="login.html" class="btn">View and Place Order</a>
+            </div>
+
+            <div class="box">
+                <img src="images/Black1.png" alt="">
+                <h3>Black Forest</h3>
+                <div class="price">₱710 <span>₱750</span></div>
+                <a href="login.html" class="btn">View and Place Order</a>
+            </div>
+
+            <div class="box">
+                <img src="images/Blueberry1.png" alt="">
+                <h3>Blueberry Cheesecake</h3>
+                <div class="price">₱500 <span>₱680</span></div>
+                <a href="login.html" class="btn">View and Place Order</a>
+            </div>
+
+            <div class="box">
+                <img src="images/Carrot1.png" alt="">
+                <h3>Carrot Cake</h3>
+                <div class="price">₱600 <span>₱695</span></div>
+                <a href="login.html" class="btn">View and Place Order</a>
+            </div>
+
+            <div class="box">
+                <img src="images/Chocolate1.png" alt="">
+                <h3>Chocolate</h3>
+                <div class="price">₱615 <span>₱715</span></div>
+                <a href="login.html" class="btn">View and Place Order</a>
+            </div>
+
+            <div class="box">
+                <img src="images/Concorde1.png" alt="">
+                <h3>Concorde</h3>
+                <div class="price">₱450 <span>₱570</span></div>
+                <a href="login.html" class="btn">View and Place Order</a>
+            </div>
+
+
+            <div class="box">
+                <img src="images/Cookies1.png" alt="">
+                <h3>Cookies and Cream </h3>
+                <div class="price">₱560 <span>₱660</span></div>
+                <a href="login.html" class="btn">View and Place Order</a>
+            </div>
+
+
+            <div class="box">
+                <img src="images/Red1.png" alt="">
+                <h3>Red Velvet</h3>
+                <div class="price">₱800 <span>₱825</span></div>
+                <a href="login.html" class="btn">View and Place Order</a>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- contact section starts  -->
+
+    <section class="contact" id="contact">
+
+        <h1 class="heading"> <span>contact</span> us </h1>
+
+        <div class="row">
+
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15633.415328206773!2d122.77514240000002!3d11.59810335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sph!4v1667032341544!5m2!1sen!2sph"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+            <form id="contactForm">
+                <h3>Visit Bliss Bites Cakes Today!</h3>
+                <div class="inputBox">
+                    <span class="fas fa-user"></span>
+                    <input type="text" id="name" placeholder="Name">
+                </div>
+                <div class="inputBox">
+                    <span class="fas fa-envelope"></span>
+                    <input type="text" id="email" placeholder="Email">
+                </div>
+                <div class="inputBox">
+                    <span class="fas fa-phone"></span>
+                    <input type="text" id="number" placeholder="Number">
+                </div>
+                <input type="button" onclick="submitForm()" value="Contact Now" class="btn">
+            </form>
+        </div>
+
+    </section>
+
+    <!-- contact section ends -->
+
+    <!-- blogs section starts  -->
+
+    <section class="blogs" id="blogs">
+
+        <h1 class="heading"> More <span>Stories</span> </h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/blog-1.png" alt="">
+                </div>
+                <div class="content">
+                    <a href="#" class="title">A good rise: What the future holds for the Philippine baking industry</a>
+                    <span>By: AMY A. UY | February 18, 2015 </span>
+                    <p>In our visits to several panaderia all over the country in the last three years, we saw how corner bakeries have embraced new technologies slowly but surely, and have finally begun regarding baking as the science that it actually is. </p>
+                    <a href="https://www.gmanetwork.com/news/lifestyle/food/440170/a-good-rise-what-the-future-holds-for-the-philippine-baking-industry/story/"
+                        class="btn">read more</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/blog-2.png" alt="">
+                </div>
+                <div class="content">
+                    <a href="#" class="title">10 Delightful Pastries And Cakes You Must Try Within SM City Iloilo Mall</a>
+                    <span>By: Diamond Georgina | August 10, 2022</span>
+                    <p>Filipinos are known to be great food innovators, especially in the field of baking and pastry creations. The making of such attractive desserts and bread, making sure all in pleasing taste is something not everyone can do. </p>
+                    <a href="https://www.glifestyleph.com/2022/08/10-must-try-pastries-SMcity-Iloilo.html"
+                        class="btn">read more</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/blog-3.png" alt="">
+                </div>
+                <div class="content">
+                    <a href="#" class="title">They’re Back! Bacolod’s Famous  Cakes Are Available Again In the City</a>
+                    <span>By: Mira Maestrecampo | February 10, 2023</span>
+                    <p>Going back to how it started, the name “Bascon” is a family name primarily associated with creating the best dishes in the city and has been serving in the food industry since the 1950s.</p>
+                    <a href="https://yoorekka.com/magazine/bacolod-negros-island/2023/02/11/bascon-cakes-bascon-cafe-bascon-cafe-bacolod"
+                        class="btn">read more</a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- blogs section ends -->
+
+    <!-- footer section starts  -->
+
+    <section class="footer">
+
+        <div class="share">
+            <a href="https://www.facebook.com/login.php/" class="fab fa-facebook-f"></a>
+            <a href="https://twitter.com/" class="fab fa-twitter"></a>
+            <a href="https://www.instagram.com/" class="fab fa-instagram"></a>
+        </div>
+
+        <div class="links">
+            <a href="#home">home</a>
+            <a href="#about">about</a>
+            <a href="#menu">menu</a>
+            <a href="#contact">contact</a>
+            <a href="#blogs">blogs</a>
+        </div>
+
+        <div class="credit">created by <span>KASK Innovators</span> | All rights reserved</div>
+
+    </section>
+
+    <!-- footer section ends -->
+
+    <!-- javascript  -->
+    <script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const slider = document.querySelector(".slider");
+    const dotsContainer = document.querySelector(".dots-container");
+    const leftArrow = document.querySelector(".left-arrow");
+    const rightArrow = document.querySelector(".right-arrow");
+
+    let currentIndex = 0;
+
+    // Populate dots based on the number of slides
+    const totalSlides = document.querySelectorAll(".slide").length;
+    for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement("div");
+        dot.classList.add("dot");
+        dotsContainer.appendChild(dot);
+
+        // Add click event to navigate to the corresponding slide
+        dot.addEventListener("click", () => {
+            currentIndex = i;
+            setPositionByIndex();
+        });
+    }
+
+    function updateDots() {
+        const dots = document.querySelectorAll(".dots-container .dot");
+        dots.forEach((dot, index) => {
+            dot.classList.toggle("active", index === currentIndex);
+        });
+    }
+
+    function setPositionByIndex() {
+        const currentTranslate = currentIndex * -100;
+        slider.style.transform = `translateX(${currentTranslate}%)`;
+
+        updateDots();
+    }
+
+    function navigateToNextSlide() {
+        if (currentIndex < totalSlides - 1) {
+            currentIndex += 1;
+        } else {
+            currentIndex = 0;
+        }
+        setPositionByIndex();
+    }
+
+    function navigateToPrevSlide() {
+        if (currentIndex > 0) {
+            currentIndex -= 1;
+        } else {
+            currentIndex = totalSlides - 1;
+        }
+        setPositionByIndex();
+    }
+
+    leftArrow.addEventListener("click", navigateToPrevSlide);
+    rightArrow.addEventListener("click", navigateToNextSlide);
+
+    let sliderInterval;
+
+    function startSliderInterval() {
+        sliderInterval = setInterval(navigateToNextSlide, 2000); // Change slide every 2 seconds
+    }
+
+    // Initial position setup
+    setPositionByIndex();
+    startSliderInterval();
+
+    slider.addEventListener("mouseenter", () => clearInterval(sliderInterval));
+    slider.addEventListener("mouseleave", startSliderInterval);
+});
+
+        let navbar = document.querySelector('.navbar');
+
+
+        document.querySelector('#menu-btn').onclick = () => {
+            navbar.classList.toggle('active');
+            searchForm.classList.remove('active');
+            cartItem.classList.remove('active');
+        }
+
+
+        window.onscroll = () => {
+            navbar.classList.remove('active');
+            searchForm.classList.remove('active');
+            cartItem.classList.remove('active');
+        }
+
+
+        // // Contact Section - SUBMIT FORM
+        // // Event listener for the "Contact Now" button
+        // document.getElementById("contactFormBtn").addEventListener("click", function () {
+        //     // Retrieve form data
+        //     const name = document.getElementById('name').value;
+        //     const email = document.getElementById('email').value;
+        //     const number = document.getElementById('number').value;
+
+        //     // Create an object with the form data
+        //     const formData = {
+        //         name: name,
+        //         email: email,
+        //         number: number
+        //     };
+
+        //     // Call the function to save the form data to the database
+        //     submitForm(formData);
+        // });
+    </script>
+
+</body>
+
+</html>

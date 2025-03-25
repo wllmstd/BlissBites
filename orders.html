@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="CodeHim">
+  <title>Order Here</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <!-- Style CSS -->
+  <link rel="stylesheet" href="css2/style.css">
+  <!-- Demo CSS (No need to include it into your project) -->
+  <link rel="stylesheet" href="css2/demo.css">
+
+  <!--Libraries of Firebase-->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.slim.js"></script>
+
+  <!--Configuration Needed to connect to the database-->
+  <script src="js/firebaseCon.js"></script>
+
+  <!--Functions to save information to the database-->
+  <script src="js/script.js"></script>
+  <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+
+<body>
+  <header class="intro">
+    <h1>We're Not Your Average Bakery, here, every slice is a piece of heaven!</h1>
+    <p>Cakes make life sweeter. At BlissBites, we're here to make your dessert experience even more delightful.</p>
+    <div class="action">
+      <a href="main.html" title="Back to download and tutorial page" class="btn back">Back to Home</a>
+    </div>
+  </header>
+
+  <section>
+    <div class="cart-modal-overlay">
+      <div class="cart-modal">
+        <i id="close-btn" class="fas fa-times"></i>
+        <h1 class="cart-is-empty">Cart is empty</h1>
+        <h1 class="your-cart-label">
+          <i class="fas fa-shopping-cart cart-icon"></i>
+          Your Cart
+        </h1>
+        <div class="product-rows"></div>
+        <div class="total">
+          <h1 class="cart-total">TOTAL</h1>
+          <span class="total-price">₱0</span>
+          <button class="purchase-btn">Place Order</button>
+
+
+
+        </div>
+      </div>
+    </div>
+
+    <!-- end of cart modal -->
+    <div class="cart-btn">
+      <i id="cart" class="fas fa-shopping-cart"></i>
+      <span class="cart-quantity">0</span>
+    </div>
+    <!-- products -->
+    <div class="items-container">
+      <div class="card-1 card">
+        <img class="product-image" src="./images/Baba1.png" alt="">
+        <h3 class="productName">Baba Cake</h3>
+        <button class="add-to-cart">Add to cart</button>
+        <span class="product-price">₱600</span>
+      </div>
+      <div class="card-2 card">
+        <img class="product-image" src="./images/Black1.png" alt="">
+        <button class="add-to-cart">Add to cart</button>
+        <h3 class="productName">Black Forest</h3>
+        <span class="product-price">₱710</span>
+      </div>
+      <div class="card-3 card">
+        <img class="product-image" src="./images/Blueberry1.png" alt="">
+        <button class="add-to-cart">Add to cart</button>
+        <h3 class="productName">Blueberry Cheesecake</h3>
+        <span class="product-price">₱500</span>
+      </div>
+      <div class="card-4 card">
+        <img class="product-image" src="./images/Carrot1.png" alt="">
+        <button class="add-to-cart">Add to cart</button>
+        <h3 class="productName">Carrot Cake</h3>
+        <span class="product-price">₱600</span>
+      </div>
+
+    </div>
+
+
+    <div class="items-container">
+
+      <div class="card-5 card">
+        <img class="product-image" src="./images/Chocolate1.png" alt="">
+        <h3 class="productName">Chocolate</h3>
+        <button class="add-to-cart">Add to cart</button>
+        <span class="product-price">₱615</span>
+      </div>
+
+      <div class="card-6 card">
+        <img class="product-image" src="./images/Concorde1.png" alt="">
+        <button class="add-to-cart">Add to cart</button>
+        <h3 class="productName">Concorde</h3>
+        <span class="product-price">₱450</span>
+      </div>
+
+      <div class="card-7 card">
+        <img class="product-image" src="./images/Cookies1.png" alt="">
+        <button class="add-to-cart">Add to cart</button>
+        <h3 class="productName">Cookies and Cream</h3>
+        <span class="product-price">₱560</span>
+      </div>
+
+      <div class="card-8 card">
+        <img class="product-image" src="./images/Red1.png" alt="">
+        <button class="add-to-cart">Add to cart</button>
+        <h3 class="productName">Red Velvet</h3>
+        <span class="product-price">₱800</span>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    let selectedProducts = [];
+    // open cart modal
+    const cart = document.querySelector('#cart');
+    const cartModalOverlay = document.querySelector('.cart-modal-overlay');
+
+    cart.addEventListener('click', () => {
+      if (cartModalOverlay.style.transform === 'translateX(-200%)') {
+        cartModalOverlay.style.transform = 'translateX(0)';
+      } else {
+        cartModalOverlay.style.transform = 'translateX(-200%)';
+      }
+    });
+    // end of open cart modal
+
+    // close cart modal
+    const closeBtn = document.querySelector('#close-btn');
+
+    closeBtn.addEventListener('click', () => {
+      cartModalOverlay.style.transform = 'translateX(-200%)';
+    });
+
+    cartModalOverlay.addEventListener('click', (e) => {
+      if (e.target.classList.contains('cart-modal-overlay')) {
+        cartModalOverlay.style.transform = 'translateX(-200%)';
+      }
+    });
+    // end of close cart modal
+
+    // add products to cart
+    const addToCart = document.getElementsByClassName('add-to-cart');
+    const productRow = document.getElementsByClassName('product-row');
+
+    for (var i = 0; i < addToCart.length; i++) {
+      button = addToCart[i];
+      button.addEventListener('click', addToCartClicked);
+    }
+
+    function addToCartClicked(event) {
+      const button = event.target;
+      const cartItem = button.parentElement;
+      const priceElement = cartItem.getElementsByClassName('product-price')[0];
+      const productNameElement = cartItem.getElementsByClassName('productName')[0];
+
+      // Check if priceElement and productNameElement are not null before accessing innerText
+      const price = priceElement ? priceElement.innerText : "0";
+      const productName = productNameElement ? productNameElement.innerText : "";
+
+      const imageSrc = cartItem.getElementsByClassName('product-image')[0].src;
+      addItemToCart(price, productName, imageSrc);
+      updateCartPrice();
+    }
+
+
+    // Function to add items to the cart
+    function addItemToCart(price, productName, imageSrc) {
+      var productRow = document.createElement('div');
+      productRow.classList.add('product-row');
+      productRow.setAttribute('data-productName', productName); // Set the data-productName attribute
+      var productRows = document.getElementsByClassName('product-rows')[0];
+
+      var cartRowItems = `
+    <div class="product-row">
+      <img class="cart-image" src="${imageSrc}" alt="">
+      <span class="cart-price">${price}</span>
+      <span class="productName">${productName}</span>
+      <input class="product-quantity" type="number" value="1">
+      <button class="remove-btn">Remove</button>
+    </div>
+  `;
+
+      productRow.innerHTML = cartRowItems;
+      productRows.append(productRow);
+      productRow.getElementsByClassName('remove-btn')[0].addEventListener('click', removeItem);
+      productRow.getElementsByClassName('product-quantity')[0].addEventListener('change', changeQuantity);
+      updateCartPrice();
+
+      showMessage('Product added to the cart successfully!');
+    }
+
+    // end of add products to cart
+
+    function showMessage(messageText) {
+      // Create a message element
+      var messageElement = document.createElement('div');
+      messageElement.classList.add('success-message');
+      messageElement.textContent = messageText;
+
+      // Append the message to the body
+      document.body.appendChild(messageElement);
+
+      // Center the message at the top
+      messageElement.style.position = 'fixed';
+      messageElement.style.top = '500px';
+      messageElement.style.left = '50%';
+      messageElement.style.transform = 'translateX(-50%)';
+      messageElement.style.padding = '40px';
+      messageElement.style.backgroundColor = '#007E6E'; // Background color
+      messageElement.style.color = 'floralwhite'; // Text color
+      messageElement.style.borderRadius = '5px'; // Border radius
+
+      // Remove the message after a certain duration (e.g., 2 seconds)
+      setTimeout(function () {
+        document.body.removeChild(messageElement);
+      }, 1000);
+    }
+
+    // Remove products from cart
+    const removeBtn = document.getElementsByClassName('remove-btn');
+    for (var i = 0; i < removeBtn.length; i++) {
+      button = removeBtn[i]
+      button.addEventListener('click', removeItem)
+    }
+
+    function removeItem(event) {
+      btnClicked = event.target
+      btnClicked.parentElement.parentElement.remove()
+      updateCartPrice()
+    }
+
+    // update quantity input
+    var quantityInput = document.getElementsByClassName('product-quantity')[0];
+
+    for (var i = 0; i < quantityInput; i++) {
+      input = quantityInput[i]
+      input.addEventListener('change', changeQuantity)
+    }
+
+    function changeQuantity(event) {
+      var input = event.target
+      if (isNaN(input.value) || input.value <= 0) {
+        input.value = 1
+      }
+      updateCartPrice()
+    }
+    // end of update quantity input
+
+    // update total price
+    function updateCartPrice() {
+      var total = 0
+      for (var i = 0; i < productRow.length; i += 2) {
+        cartRow = productRow[i]
+        var priceElement = cartRow.getElementsByClassName('cart-price')[0]
+        var quantityElement = cartRow.getElementsByClassName('product-quantity')[0]
+        var price = parseFloat(priceElement.innerText.replace('₱', ''))
+        var quantity = quantityElement.value
+        total = total + (price * quantity)
+
+      }
+      document.getElementsByClassName('total-price')[0].innerText = '₱' + total
+
+      document.getElementsByClassName('cart-quantity')[0].textContent = i /= 2
+    }
+    // end of update total price
+
+    // purchase items
+    const purchaseBtn = document.querySelector('.purchase-btn');
+
+    purchaseBtn.addEventListener('click', function () {
+      const cartModalOverlay = document.querySelector('.cart-modal-overlay');
+      const cartItems = document.getElementsByClassName('product-rows')[0];
+
+      // Check if the cart is empty
+      if (cartItems.children.length === 0) {
+        alert('Your cart is empty. Please add items before placing an order.');
+        return;
+      }
+
+      const selectedProducts = [];
+
+      // Iterate through each product in the cart
+      for (let i = 0; i < cartItems.children.length; i++) {
+        const cartRow = cartItems.children[i];
+        const price = cartRow.getElementsByClassName('cart-price')[0].innerText;
+        const productName = cartRow.dataset.productName; // Retrieve product name from data attribute
+        const imageSrc = cartRow.querySelector('.cart-image').src;
+
+        // Add product details to the selectedProducts array
+        selectedProducts.push({ price, productName, imageSrc });
+      }
+
+      // Calculate total price
+      const totalPrice = calculateTotalPrice();
+
+      // Store selectedProducts and totalPrice in local storage
+      const orderDetails = { selectedProducts, totalPrice };
+      localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
+
+      // Redirect to cart.html
+      window.location.href = 'cart.html';
+    });
+
+    // Function to calculate total price
+    function calculateTotalPrice() {
+      let total = 0;
+      const productRows = document.getElementsByClassName('product-row');
+
+      for (let i = 0; i < productRows.length; i++) {
+        const priceElement = productRows[i].getElementsByClassName('cart-price')[0];
+        const quantityElement = productRows[i].getElementsByClassName('product-quantity')[0];
+        const price = parseFloat(priceElement.innerText.replace('₱', ''));
+        const quantity = quantityElement.value;
+        total += price * quantity;
+      }
+
+      return total;
+    }
+
+  </script>
+</body>
+
+</html>
